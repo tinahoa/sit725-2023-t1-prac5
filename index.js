@@ -5,16 +5,15 @@ app.listen(PORT, () => {
     console.log("Listening on " + PORT);
 })
 
-app.get('/addTwoNumbers', (req, res) => {
 
-    let num1 = parseInt(req.query.num1);
-    let num2 = parseInt(req.query.num2);
-    let sum = num1 + num2;
-
-
-    res.send('Sum of two input numbers is ' + sum);
-})
-
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+const cardList = [
+    { title: 'Kitten 1', image: 'images/kitten.jpeg', link: '#', description: 'Description for kitten 1' },
+    { title: 'Kitten 2', image: 'images/kitten2.jpeg', link: '#', description: 'Description for kitten 2' },
+    { title: 'Kitten 3', image: 'images/kitten3.jpeg', link: '#', description: 'Description for kitten 3' }
+];
+app.get('/api/cards', (req, res) => {
+    res.json({ statusCode: 200, cards: cardList, message: "Success" })
+})
