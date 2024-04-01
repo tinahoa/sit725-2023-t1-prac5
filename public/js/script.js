@@ -45,11 +45,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // Form Submission Handling
   document.getElementById('myForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
-    console.log('Name: ', name);
-    console.log('Email: ', email);
-    console.log('Message: ', message);
+    var title = document.getElementById('name').value;
+    var image = document.getElementById('image').value;
+    var description = document.getElementById('description').value;
+    // console.log('Name: ', name);
+    // console.log('Email: ', email);
+    // console.log('Message: ', message);
+    $.ajax({
+      type: 'POST',
+      url: '/api/submitForm',
+      data: JSON.stringify({ title, image, description }),
+      contentType: 'application/json',
+      success: function (response) {
+        console.log('Form submitted successfully:', response);
+        // Optionally, you can show a success message to the user
+      },
+      error: function (error) {
+        console.error('Error submitting form:', error);
+        // Optionally, you can show an error message to the user
+      }
+    });
+
+
   });
 });
