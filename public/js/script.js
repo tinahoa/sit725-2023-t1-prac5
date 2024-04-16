@@ -1,16 +1,7 @@
-// const { response } = require("express");
-
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize modal
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems, {});
-
-  //  Data for cards
-  // var cardList = [
-  //   { title: 'Kitten 1', image: 'images/kitten.jpeg', link: '#', description: 'Description for kitten 1' },
-  //   { title: 'Kitten 2', image: 'images/kitten2.jpeg', link: '#', description: 'Description for kitten 2' },
-  //   { title: 'Kitten 3', image: 'images/kitten3.jpeg', link: '#', description: 'Description for kitten 3' }
-  // ];
 
   const getcards = () => {
     $.get('/api/cards', (response) => {
@@ -48,9 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var title = document.getElementById('name').value;
     var image = document.getElementById('image').value;
     var description = document.getElementById('description').value;
-    // console.log('Name: ', name);
-    // console.log('Email: ', email);
-    // console.log('Message: ', message);
+
     $.ajax({
       type: 'POST',
       url: '/api/submitForm',
